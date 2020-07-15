@@ -1,8 +1,12 @@
 #messages{
     height:300px;
     overflow-y: scroll;
-   }
+}
    
-   #app {
+#app {
     margin-top: 2rem;
-   }
+}
+
+#iuserId{
+    padding-bottom: 50px;
+}

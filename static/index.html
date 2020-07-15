@@ -14,16 +14,27 @@
     <div id="app" class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3 col-sm-12">
-                    <h1 class="text-center">{{ title }}</h1>
+                    <h1 class="text-center">{{ title }} {{jobId}}</h1>
                     <br>
                     <div id="status"></div>
                     <div id="chat">
-                        <input type="text" v-model="name" id="username" class="form-control" placeholder="Enter name...">
+                        <input type="text" v-model="jobId" id="ijobId" class="form-control" placeholder="jobId:">
+                        <input type="text" v-model="userId" id="iuserId" class="form-control" placeholder="userId:">
+                        <select name="userType" v-model="userType">
+                            <option value="">Selecione o seu tipo de usuário</option>
+                            <option value="customer">Customer</option>
+                            <option value="serviceProvider">Service Provider</option>
+                        </select>
                         <br>
                         <div class="card">
                             <div id="messages" class="card-block">
                                 <ul>
-                                    <li v-for="message of messages">{{ message.name }}: {{ message.text }}</li>
+                                    <li v-for="message of messages">
+                                        <label for="">jobId: {{message.jobId}}</label>
+                                        <label for="">userId: {{message.userId}}</label>
+                                        <label for="">userType: {{message.userType}}</label>
+                                        <label for="">text: {{message.text}}</label>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

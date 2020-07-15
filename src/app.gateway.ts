@@ -8,7 +8,7 @@ import {
  } from '@nestjs/websockets';
  import { Logger } from '@nestjs/common';
  import { Socket, Server } from 'socket.io';
- 
+
  @WebSocketGateway()
  export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
  
@@ -17,11 +17,13 @@ import {
  
   @SubscribeMessage('msgToServer')
   handleMessage(client: Socket, payload: string): void {
-   this.server.emit('msgToClient', payload);
+  
+    console.log("payload",payload);
+    this.server.emit('msgToClient', payload);
   }
  
   afterInit(server: Server) {
-   this.logger.log('Initialized');
+    this.logger.log('Initialized');
   }
  
   handleDisconnect(client: Socket) {
@@ -29,6 +31,23 @@ import {
   }
  
   handleConnection(client: Socket, ...args: any[]) {
-   this.logger.log(`Client connected: ${client.id}`);
+ 
+    this.logger.log(`Client connected: ${client.id}`);
+  
   }
+
+ getHistoric(client: Socket){
+    const msg= {
+      userId: '333', text: 'iu', jobId: 'eee', userType: 'customer'
+    }
+
+    console.log("payload22",msg);
+      this.server.emit('historic', msg);
+  }
+
+
+
+
+
+
  }
